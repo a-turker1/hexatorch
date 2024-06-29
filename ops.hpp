@@ -1,0 +1,1 @@
+void add(float *left, float *right, float *output, int length);
