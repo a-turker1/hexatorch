@@ -2,22 +2,30 @@
 #include <stdio.h>
 #include "ops.hpp"
 #include "helper.hpp"
+#include <hexagon_types.h>
+#include <hvx_hexagon_protos.h>
 
-#define ARRAY_SIZE 256
+#define ARRAY_SIZE 16
 
 int main()
 {
-    float *in1_vb = (float *)aligned_malloc(ARRAY_SIZE * sizeof(float), 128);
-    float *in2_vb = (float *)aligned_malloc(ARRAY_SIZE * sizeof(float), 128);
-    float *output = (float *)aligned_malloc(ARRAY_SIZE * sizeof(float), 128);
+
+    int8_t *in1_vb = (int8_t *)aligned_malloc(ARRAY_SIZE * sizeof(int8_t), 1024);
+    int8_t *in2_vb = (int8_t *)aligned_malloc(ARRAY_SIZE * sizeof(int8_t), 1024);
+    int8_t *output = (int8_t *)aligned_malloc(ARRAY_SIZE * sizeof(int8_t), 1024);
+    int8_t scalar = 5;
     for (int i = 0; i < ARRAY_SIZE; i++)
     {
-        in1_vb[i] = 1.25f;
-        in2_vb[i] = 1.21f;
+        in1_vb[i] = i + 1;
+        in2_vb[i] = i + 1;
     }
-    add(in1_vb, in2_vb, output, ARRAY_SIZE);
-    for (int i = 0; i < ARRAY_SIZE; i++)
+
+    add(in1_vb, scalar, output, ARRAY_SIZE);
+
+    for (size_t i = 0; i < ARRAY_SIZE; i++)
     {
-        printf("%f + %f = %f\n", in1_vb[i], in2_vb[i], output[i]);
+        printf("%d\n", output[i]);
     }
+
+    return 0;
 }
