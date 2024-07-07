@@ -3,6 +3,9 @@
 void add(float *__restrict__ left, float *__restrict__ right, float *__restrict__ output, int length);
 void add(float *__restrict__ input, float scalar, float *__restrict__ output, int length);
 
+void mul(float *__restrict__ left, float *__restrict__ right, float *__restrict__ output, int length);
+void mul(float *__restrict__ input, float scalar, float *__restrict__ output, int length);
+
 static inline int32_t float_to_int(float scale)
 {
     union
