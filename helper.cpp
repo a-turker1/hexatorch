@@ -1,5 +1,7 @@
 #include <stdlib.h>
 
+#include "helper.hpp"
+
 void *aligned_malloc(size_t size, size_t alignment)
 {
     void *ptr = NULL;
